@@ -25,6 +25,3 @@
 [submodule "Android/SignApk"]
 	path = Android/SignApk
 	url = https://github.com/techexpertize/SignApk.git
-[submodule "Reverse/uncompyle6"]
-	path = Reverse/uncompyle6
-	url = https://github.com/rocky/python-uncompyle6.git
