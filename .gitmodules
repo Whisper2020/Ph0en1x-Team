@@ -1,0 +1,30 @@
+[submodule "Reverse/dnSpy"]
+	path = Reverse/dnSpy
+	url = https://github.com/dnSpy/dnSpy.git
+[submodule "Reverse/ghidra"]
+	path = Reverse/ghidra
+	url = https://github.com/NationalSecurityAgency/ghidra.git
+[submodule "Reverse/pyinstxtractor"]
+	path = Reverse/pyinstxtractor
+	url = https://github.com/extremecoders-re/pyinstxtractor.git
+[submodule "Reverse/python-uncompyle6"]
+	path = Reverse/python-uncompyle6
+	url = https://github.com/rocky/python-uncompyle6.git
+[submodule "Reverse/demovfuscator"]
+	path = Reverse/demovfuscator
+	url = https://github.com/kirschju/demovfuscator.git
+[submodule "Reverse/deflat"]
+	path = Reverse/deflat
+	url = https://github.com/cq674350529/deflat.git
+[submodule "Android/dex2jar"]
+	path = Android/dex2jar
+	url = https://github.com/pxb1988/dex2jar.git
+[submodule "Android/android-backup-extractor"]
+	path = Android/android-backup-extractor
+	url = https://github.com/nelenkov/android-backup-extractor.git
+[submodule "Android/Apktool"]
+	path = Android/Apktool
+	url = https://github.com/iBotPeaches/Apktool.git
+[submodule "Android/SignApk"]
+	path = Android/SignApk
+	url = https://github.com/techexpertize/SignApk.git
