@@ -12,3 +12,6 @@ pip3 install pycrypto
 
 ### 原理：
 生成的WebVPN链接: [https://webvpn.xmu.edu.cn](https://webvpn.xmu.edu.cn) /protocol/{iv}{AES(key='wvpnisthebest!', mode=AES.MODE_CFB, IV=iv, segment_size=128).encrypt(host)}\[/path]
+
+#### 注意：
+百度等一些网址被Ban了，可以使用搜狗(sogo) 必应(bing)替代。
