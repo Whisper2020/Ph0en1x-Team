@@ -2,10 +2,11 @@
 #### Python依赖：
 > Python3
 
-pip install pycrypto
+pip3 install pycrypto
 ### 用法：
 直接运行脚本，输入访问地址
-python3 wvpn.py
+
+·python3 wvpn.py·
 
 > 如果不指定协议，默认使用HTTP
 
