@@ -1,5 +1,7 @@
 ## 此脚本可以构造使用WebVPN访问任意地址的请求
-
+#### Python依赖：
+> Python3
+pip install pycrypto
 ### 用法：
 Input Link: http://www.bing.com
 > 如果不指定协议，默认使用HTTP
