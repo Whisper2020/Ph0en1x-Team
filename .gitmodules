@@ -28,3 +28,6 @@
 [submodule "Reverse/python-uncompyle6"]
 	path = Reverse/python-uncompyle6
 	url = https://github.com/rocky/python-uncompyle6.git
+[submodule "Web/dirsearch"]
+	path = Web/dirsearch
+	url = https://github.com/maurosoria/dirsearch.git
