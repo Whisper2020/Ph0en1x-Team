@@ -29,10 +29,15 @@ TargetList = [f"172.16.{ip}.16" for ip in range(1)]
 Port = 9999
 Exp_List = [backdoor.GetFlag] # @add
 
-def Submit_Flag(_flag: str or bytes):
-    # r = requests.get(Submit_URL, params={"token": Token, "flag": _flag}, timeout=0.5)
-    r = requests.post(Submit_URL, data={"token": Token, "flag": _flag}, timeout=0.5)
-    print(r)
+def Submit_Flag(_flag: str or bytes, _Print = False):
+    try:
+        # r = requests.get(Submit_URL, params={"token": Token, "flag": _flag}, timeout=0.5)
+        r = requests.post(Submit_URL, data={"token": Token, "flag": _flag}, timeout=0.5)
+        if _Print:
+            print(r)
+
+    except Exception:
+        print("An exception occurred while submitting flag.")
     if "success" in r:
         return True
     return False
@@ -41,9 +46,10 @@ if __name__ == '__main__':
     while True:
         Success = 0
         for ip in TargetList:
+            Suc = False
             print(f"{ip}:{Port}$ ", end="")
-            Flag = None
             for Attack in Exp_List:
+                Flag = None
                 try:
                     Flag = Attack(ip, Port)
                 except TypeError:
@@ -53,13 +59,21 @@ if __name__ == '__main__':
                     print("E. ", end="")
                     pass
                 if Flag != None:
-                    try:
-                        if Submit_Flag(Flag):
-                            print(f"Attacked via {Attack.__name__}.")
-                            Success += 1
-                            break
-                    except Exception:
-                        print("An exception occurred while submitting flag.")
+                    '''
+                    >>> isinstance("", list)
+                    False
+                    '''
+                    if isinstance(Flag, list):
+                        for flag in Flag:
+                            if Submit_Flag(flag, True):
+                                Suc = True
+                                break
+                    else:
+                        Suc = Submit_Flag(Flag, True)
+                if Suc:
+                    print(f"Attacked via {Attack.__name__}.")
+                    Success += 1
+                    break
         print(f"[{strftime('%H:%M:%S')}] Success: {Success}/{len(TargetList)}")
         try:
             sleep(23)
