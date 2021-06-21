@@ -16,18 +16,21 @@ function LOG_GPC(Array $_GPC = null, string $PROMPT = null)
     global $LOGSTREAM;
     if (count($_GPC) != 0) {
         $LOGSTREAM .= $PROMPT."\n";
+        if ($PROMPT[1] == "P")
+            $LOGSTREAM[3] = "?";
         foreach ($_GPC as $key => $value)
             $LOGSTREAM .= "\t$key = $value\n";
     }
 }
 LOG_GPC($_GET, "[URL_PARAM]");
-LOG_GPC($_POST, "[POST_DATA]");
+LOG_GPC($_POST,"[POST_DATA]");
 
 if (count($_FILES) != 0) {
     if (!file_exists(LOG_UPLOADFILE))
         if (!mkdir(LOG_UPLOADFILE))
             $LOGSTREAM .= "mkdir(".LOG_UPLOADFILE.") FAILED. \n";
-    $LOGSTREAM .= "!!FILE: \n";
+    $LOGSTREAM .= "FILE: \n";
+    $LOGSTREAM[3] = ">";
     foreach ($_FILES as $key => $value) {
         $f1lename = LOG_UPLOADFILE.'['.$_SERVER['REMOTE_ADDR']."]".$value['name'].".orz";
         $LOGSTREAM .= "\t[$key] "."Name:$value[name]; Type:$value[type]; Size:$value[size]\n";
