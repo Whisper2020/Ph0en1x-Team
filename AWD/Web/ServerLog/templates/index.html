@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="card border-0 rounded-0 shadow mx-auto my-5 p-4" style="width: 50vw">
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="ip" class="form-label">Server IP</label>
+                    <input id="ip" type="text" class="form-control rounded-0 shadow-sm" name="ip">
+                </div>
+                <button type="submit" class="btn btn-primary rounded-0 shadow-sm me-2 align-baseline">Enter</button>
+                <button type="button" class="btn btn-success rounded-0 shadow-sm me-2 align-baseline"
+                        onclick="install()">Install
+                </button>
+                <button type="button" class="btn btn-danger rounded-0 shadow-sm me-2 align-baseline"
+                        onclick="uninstall()">Uninstall
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        let form = document.querySelector('form');
+
+        function install() {
+            fetch('{{ url_for('install') }}', {
+                method: 'POST',
+                body: new FormData(form)
+            }).then(() => form.submit());
+        }
+
+        function uninstall() {
+            if (confirm('Are you sure? It will remove the first line of all .php files!'))
+                fetch('{{ url_for('uninstall') }}', {
+                    method: 'POST',
+                    body: new FormData(form)
+                }).then(() => alert('Successfully uninstalled'));
+        }
+    </script>
+{% endblock %}

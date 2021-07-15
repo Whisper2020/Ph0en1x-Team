@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        textarea {
+            font-size: 12px !important;
+            font-family: 'Operator Mono', 'Source Code Pro', Menlo, Monaco, Consolas, Courier New, monospace;
+        }
+
+        input {
+            font-size: 13px !important;
+            font-family: 'Operator Mono', 'Source Code Pro', Menlo, Monaco, Consolas, Courier New, monospace;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="row mb-3">
+        <div class="col-8">
+            <form>
+                <label for="cmd" class="form-label fs-4">Shell</label>
+                <textarea id="shell" class="form-control bg-dark text-light border-0 rounded-0 shadow" rows="13"
+                          readonly></textarea>
+                <input id="cmd" name="cmd" placeholder=">>>"
+                       class="form-control bg-dark text-light border-secondary border-bottom-0 border-start-0 border-end-0 rounded-0 shadow">
+            </form>
+        </div>
+        <div class="col-4">
+            <label for="monitor" class="form-label fs-4">Monitor</label>
+            <textarea id="monitor" class="form-control bg-dark text-light border-0 rounded-0 shadow" rows="14"
+                      wrap="off"
+                      readonly></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="log" class="form-label fs-4">All Logs</label>
+            <textarea id="log" class="form-control bg-dark text-light border-0 rounded-0 shadow" rows="25" wrap="off"
+                      readonly></textarea>
+        </div>
+        <div class="col">
+            <label for="log-filtered" class="form-label fs-4">Filtered</label>
+            <textarea id="log-filtered" class="form-control bg-dark text-light border-0 rounded-0 shadow" rows="25"
+                      wrap="off" readonly></textarea>
+        </div>
+        <div class="col">
+            <label for="log-attack" class="form-label fs-4">Attack</label>
+            <textarea id="log-attack" class="form-control bg-dark text-light border-0 rounded-0 shadow" rows="25"
+                      wrap="off" readonly></textarea>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script>
+        let form = document.querySelector('form');
+        let shell = document.querySelector('#shell');
+        let monitor = document.querySelector('#monitor');
+        let log = document.querySelector('#log');
+        let logFiltered = document.querySelector('#log-filtered');
+        let logAttack = document.querySelector('#log-attack');
+        document.querySelector('#cmd').addEventListener('keydown', execShell);
+
+        function update() {
+            fetch('{{ url_for('log', ip=ip) }}', {
+                method: 'GET'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    log.textContent = data[0];
+                    logFiltered.textContent = data[1];
+                    logAttack.textContent = data[2];
+                });
+            fetch('{{ url_for('monitor', ip=ip) }}', {
+                method: 'GET'
+            })
+                .then(res => res.text())
+                .then(data => {
+                    monitor.textContent = data;
+                });
+        }
+
+        function execShell(event) {
+            console.log(event);
+            if (event.key !== 'Enter')
+                return;
+            event.preventDefault();
+            fetch('{{ url_for('shell', ip=ip) }}', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+                .then(res => res.text())
+                .then(data => {
+                    shell.textContent = data;
+                });
+            return false;
+        }
+
+        update();
+        setInterval(update, 3000);
+    </script>
+{% endblock %}
