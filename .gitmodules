@@ -28,3 +28,12 @@
 [submodule "Reverse/python-uncompyle6"]
 	path = Reverse/python-uncompyle6
 	url = https://github.com/rocky/python-uncompyle6.git
+[submodule "Reverse/simavr"]
+	path = Reverse/simavr
+	url = https://github.com/buserror/simavr.git
+[submodule "Reverse/radare2"]
+	path = Reverse/radare2
+	url = https://github.com/radareorg/radare2.git
+[submodule "Reverse/picocom"]
+	path = Reverse/picocom
+	url = https://github.com/npat-efault/picocom.git
