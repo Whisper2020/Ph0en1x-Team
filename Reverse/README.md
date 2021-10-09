@@ -51,3 +51,15 @@ unpack NS pack for Win PE files
 ### [uncompyle6](https://github.com/rocky/python-uncompyle6/)
 
 decompile .pyc to python
+
+### [picocom](https://github.com/npat-efault/picocom)
+
+Minimal dumb-terminal emulator
+
+### [radare2](https://github.com/radareorg/radare2)
+
+Unix-Like Reverse Engineering Framework
+
+### [simavr](https://github.com/buserror/simavr)
+
+a lean and mean Atmel AVR simulator for linux
