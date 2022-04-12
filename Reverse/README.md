@@ -63,3 +63,7 @@ Unix-Like Reverse Engineering Framework
 ### [simavr](https://github.com/buserror/simavr)
 
 a lean and mean Atmel AVR simulator for linux
+
+### [jd-gui](https://github.com/java-decompiler/jd-gui)
+
+java decompiler
